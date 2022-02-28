@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+    body{
+        background-color: #F6F6F6;
+        text-align:center
+    }
+    h1{
+        text-align:center;
+    }
+    button{
+        margin-bottom:50px;
+   
+    }
+    #choices{
+        margin-bottom:50px;
+    }
+    #result{
+        margin-bottom:50px;
+    }
+
+    </style>
+    <h1>Shi Su Mi</h1>
+    <div class="container">
+        <button id="pierre" onclick="response(this.id)">pierre</button>
+        <button id="papier" onclick="response(this.id)">papier</button>
+        <button id="ciseaux" onclick="response(this.id)">ciseaux</button>
+    </div>
+    <div id="choices"></div>
+    <div id="result" style="font-size: 35px; "></div>
+    <div id="count"></div>
+</body>
+
+<script>
+var btnPierre = document.getElementById("pierre");
+var btnPapier = document.getElementById("papier");
+var btnCiseaux = document.getElementById("ciseaux");
+var choices = document.getElementById("choices");
+var result = document.getElementById("result");
+var count = document.getElementById("count");
+var joueur = 0;
+var robot = 0;
+
+
+function response(btnSelect)
+  {
+      var selected = btnSelect;
+     
+      var robotChoices = ["pierre", "papier", "ciseaux"];
+      var robotSelected = robotChoices[Math.floor(Math.random()*robotChoices.length)];
+      choices.innerHTML="Vous avez choisi <b>"+selected+"</b> l'ordianteur à séléctionné <b>"+robotSelected+ "</b>";
+
+      if (selected === "pierre"){
+            if(robotSelected === "pierre"){
+                result.innerHTML="Egalité";
+                result.style.color="grey";
+            }
+            if(robotSelected === "papier"){
+                result.innerHTML="Perdu";
+                result.style.color="red";
+                robot++; 
+            }
+            if(robotSelected === "ciseaux"){
+                result.innerHTML="Gagné";
+                result.style.color="green";
+                joueur++;
+            }
+      }
+
+      if (selected === "papier"){
+            if(robotSelected === "pierre"){
+                result.innerHTML="Gagné";
+                result.style.color="green";
+                joueur++;
+            }
+            if(robotSelected === "papier"){
+                result.innerHTML="Egalité";
+                result.style.color="grey";
+            }
+            if(robotSelected === "ciseaux"){
+                result.innerHTML="Perdu";
+                result.style.color="red";
+                robot++;
+            }
+      }
+
+      if (selected === "ciseaux"){
+            if(robotSelected === "pierre"){
+                result.innerHTML="Perdu";
+                result.style.color="red";
+                robot++;
+            }
+            if(robotSelected === "papier"){
+                result.innerHTML="Gagné";
+                result.style.color="green";
+                joueur++;
+            }
+            if(robotSelected === "ciseaux"){
+                result.innerHTML="Egalité";
+                result.style.color="grey";
+            }
+      }
+     
+      count.innerHTML="Votre score est de: <b>"+joueur+ "</b> points <br> Le score de l'ordinateur est de: <b> "+robot+ "</b> points"
+      console.log(joueur);
+  }
+</script>
+</html>
+
+
+
